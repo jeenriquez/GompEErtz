@@ -83,7 +83,7 @@ def get_stdout_data(nmin = None, nmax = None,data_type='M',format='stdout',dated
         datosI = datosI[datosI['Numero personas diarias'] < nmax]
         datosD = datosD[datosI['Numero personas diarias'] < nmax]
         datosS = datosS[datosI['Numero personas diarias'] < nmax]
-        raise ValueError('We have some max',nmax)
+        raise DrepecationError('We have some max',nmax)
     if nmin:
         indexI = datosI[datosI['Numero personas diarias'] >= nmin].index[0]
         datosI = datosI.loc[indexI:]
@@ -97,13 +97,20 @@ def get_stdout_data(nmin = None, nmax = None,data_type='M',format='stdout',dated
 
     if format == 'stdout':
         return np.array(datosI['Numero personas diarias'].tolist()), np.array(datosD['Numero personas totales'].tolist()), np.array(datosS['Numero personas diarias'].tolist())
-    else:
-
+    elif format == 'all':
         datosI.reset_index(drop=True, inplace=True)
         datosD.reset_index(drop=True, inplace=True)
         datosS.reset_index(drop=True, inplace=True)
-
         return datosI, datosD, datosS
+    elif format == 'deaths':
+        datosD.reset_index(drop=True, inplace=True)
+        return datosD
+    else:
+        datosI.reset_index(drop=True, inplace=True)
+        datosS.reset_index(drop=True, inplace=True)
+        return datosI, datosS
+
+
 
 def get_file_name(data_type='MC',dated='20200606'):
 
