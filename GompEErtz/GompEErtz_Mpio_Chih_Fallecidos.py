@@ -30,7 +30,7 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom.dia_init)
 plt.ylabel('Fallecidos Diarios')
 plt.title('Fallecidos diarios Mpio. Chihhuahua')
-plt.savefig('results/gom_pronostico_Mpio_fallecidos_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mpio_fallecidos_%s.png'%gom.dated,dpi=300)
 
 #---------------------------------------------------------------
 # Calcular el cambio de pronostico devido a actualizacion de datos.
@@ -64,11 +64,11 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom_0606.dia_init)
 plt.ylabel('Fallecidos Diarios')
 plt.title('Fallecidos diarios Mpio. Chihhuahua')
-plt.savefig('results/gom_pronostico_Mpio_fallecidos_multi_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mpio_fallecidos_multi_%s.png'%gom.dated,dpi=300)
 
 #-------
 #Plotting
 
 gom.plot_tot_fit()
-plt.savefig('results/gom_pronostico_Mpio_fallecidos_fit_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mpio_fallecidos_fit_%s.png'%gom.dated,dpi=300)
 

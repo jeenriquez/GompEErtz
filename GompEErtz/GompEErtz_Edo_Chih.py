@@ -44,7 +44,7 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Edo. Chihhuahua')
-plt.savefig('results/gom_pronostico_Edo_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Edo_%s.png'%gom.dated,dpi=300)
 
 
 #---------------------------------------------------------------
@@ -80,11 +80,11 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom_40sos_0606.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Edo. Chihhuahua')
-plt.savefig('results/gom_pronostico_Edo_multi_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Edo_multi_%s.png'%gom.dated,dpi=300)
 
 #-------
 #Plotting
 
 gom_40sos.plot_tot_fit()
-plt.savefig('results/gom_pronostico_Edo_fit_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Edo_fit_%s.png'%gom.dated,dpi=300)
 

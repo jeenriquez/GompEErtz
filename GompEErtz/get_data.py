@@ -8,7 +8,7 @@ import pdb
 #--------------------
 #
 
-data_path = '../../data/MX/'
+data_path = '../datos/'
 
 
 def get_stdout_data(nmin = None, nmax = None,data_type='M',format='stdout',dated='20200707',lugar='CHIHUAHUA'):

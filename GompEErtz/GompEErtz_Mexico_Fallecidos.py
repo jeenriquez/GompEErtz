@@ -28,7 +28,7 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom.dia_init)
 plt.ylabel('Fallecidos Diarios')
 plt.title('Fallecidos diarios Mexico')
-plt.savefig('results/gom_pronostico_Mexico_fallecidos_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mexico_fallecidos_%s.png'%gom.dated,dpi=300)
 
 
 #---------------------------------------------------------------
@@ -64,11 +64,11 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom_0606.dia_init)
 plt.ylabel('Fallecidos Diarios')
 plt.title('Fallecidos diarios Mexico')
-plt.savefig('results/gom_pronostico_Mexico_fallecidos_multi_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mexico_fallecidos_multi_%s.png'%gom.dated,dpi=300)
 
 #-------
 #Plotting
 
 gom.plot_tot_fit()
-plt.savefig('results/gom_pronostico_Mexico_fallecidos_fit_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mexico_fallecidos_fit_%s.png'%gom.dated,dpi=300)
 

@@ -47,7 +47,7 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Mpio. Chih')
-plt.savefig('results/gom_pronostico_Mpio_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mpio_%s.png'%gom.dated,dpi=300)
 
 #---------------------------------------------------------------
 # Calcular el cambio de pronostico devido a actualizacion de datos.
@@ -82,7 +82,7 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom_40sos_0606.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Mpio. Chih')
-plt.savefig('results/gom_pronostico_Mpio_multi_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mpio_multi_%s.png'%gom.dated,dpi=300)
 
 #---------------------------------------------------------------
 # Calcular el cambio de pronostico con respecto al limites iniciales
@@ -119,11 +119,11 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom_40sos_nmin1.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Mpio. Chihuahua')
-plt.savefig('results/gom_pronostico_Mpio_multilim_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mpio_multilim_%s.png'%gom.dated,dpi=300)
 
 #-------
 #Plotting
 
 gom_40sos.plot_tot_fit()
-plt.savefig('results/gom_pronostico_Mpio_fit_%s.png'%gom.dated,dpi=300)
+plt.savefig('../results/gom_pronostico_Mpio_fit_%s.png'%gom.dated,dpi=300)
 
