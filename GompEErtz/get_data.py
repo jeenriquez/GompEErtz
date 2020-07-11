@@ -11,7 +11,7 @@ import pdb
 data_path = '../datos/'
 
 
-def get_stdout_data(nmin = None, nmax = None,data_type='M',format='stdout',dated='20200707',lugar='CHIHUAHUA'):
+def get_stdout_data(nmin = None,data_type='M',format='stdout',dated='20200707',lugar='CHIHUAHUA'):
     ''' Obtener datos estatales, nacionales o municipales en Mexico.
         Ejemplo:
 
@@ -76,14 +76,6 @@ def get_stdout_data(nmin = None, nmax = None,data_type='M',format='stdout',dated
     datosD.reset_index(drop=True, inplace=True)
     datosS.reset_index(drop=True, inplace=True)
 
-    if nmin and nmax:
-        if nmin > nmax:
-            nmin, nmax = nmax, nmin
-    if nmax:
-        datosI = datosI[datosI['Numero personas diarias'] < nmax]
-        datosD = datosD[datosI['Numero personas diarias'] < nmax]
-        datosS = datosS[datosI['Numero personas diarias'] < nmax]
-        raise DrepecationError('We have some max',nmax)
     if nmin:
         indexI = datosI[datosI['Numero personas diarias'] >= nmin].index[0]
         datosI = datosI.loc[indexI:]
@@ -109,7 +101,6 @@ def get_stdout_data(nmin = None, nmax = None,data_type='M',format='stdout',dated
         datosI.reset_index(drop=True, inplace=True)
         datosS.reset_index(drop=True, inplace=True)
         return datosI, datosS
-
 
 
 def get_file_name(data_type='MC',dated='20200606'):
