@@ -77,10 +77,14 @@ def get_stdout_data(nmin = None,data_type='M',format='stdout',dated='20200707',l
     datosS.reset_index(drop=True, inplace=True)
 
     if nmin:
-        indexI = datosI[datosI['Numero personas diarias'] >= nmin].index[0]
-        datosI = datosI.loc[indexI:]
-        datosD = datosD.loc[indexI:]
-        datosS = datosS.loc[indexI:]
+        if format == 'deaths':
+            nmin_index = get_index(nmin,datosD)
+        else:
+            nmin_index = get_index(nmin,datosI)
+
+        datosI = datosI.loc[nmin_index:]
+        datosD = datosD.loc[nmin_index:]
+        datosS = datosS.loc[nmin_index:]
 
     #Make sure they are the same size.
     if len(datosI) != len(datosS) or len(datosI) != len(datosD):
@@ -102,6 +106,12 @@ def get_stdout_data(nmin = None,data_type='M',format='stdout',dated='20200707',l
         datosS.reset_index(drop=True, inplace=True)
         return datosI, datosS
 
+
+def get_index(nmin,datos):
+
+    nmin_index = datos[datos['Numero personas diarias'] >= nmin].index[0]
+
+    return nmin_index
 
 def get_file_name(data_type='MC',dated='20200606'):
 
