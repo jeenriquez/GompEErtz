@@ -26,17 +26,19 @@ class GompEErtz:
         #-------
         #Get data, excluding the last few days
 
-        cases_I, cases_D, cases_S = get_stdout_data(nmin=self.nmin,data_type=self.data_type,format='all',dated=self.dated,lugar=self.lugar)
-
         if self.fit_deaths:
-            self.cases = np.array(cases_D['Numero personas totales'][:self.lag].tolist())
-            self.cases_daily =  np.array(cases_D['Numero personas diarias'][:self.lag].tolist())
-        else:
-            self.cases = np.array(cases_I['Numero personas totales'][:self.lag].tolist()) +np.array(cases_S['Numero personas totales'][:self.lag].tolist())*self.factor
-            self.cases_daily =  np.array(cases_I['Numero personas diarias'][:self.lag].tolist())
+            cases_full = get_stdout_data(nmin=self.nmin,data_type=self.data_type,format='D',dated=self.dated,lugar=self.lugar)
 
-        self.dia_init = cases_I['Dias'].iloc[0]
-        self.dias = cases_I['Dias'].tolist()[:self.lag]
+            self.cases = np.array(cases_full['Numero personas totales'][:self.lag].tolist())
+            self.cases_daily =  np.array(cases_full['Numero personas diarias'][:self.lag].tolist())
+        else:
+            cases_full, cases_S = get_stdout_data(nmin=self.nmin,data_type=self.data_type,format='IS',dated=self.dated,lugar=self.lugar)
+
+            self.cases = np.array(cases_full['Numero personas totales'][:self.lag].tolist()) +np.array(cases_S['Numero personas totales'][:self.lag].tolist())*self.factor
+            self.cases_daily =  np.array(cases_full['Numero personas diarias'][:self.lag].tolist())
+
+        self.dia_init = cases_full['Dias'].iloc[0]
+        self.dias = cases_full['Dias'].tolist()[:self.lag]
 
         #-------
         #Fitting
