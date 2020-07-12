@@ -11,7 +11,7 @@ import pdb
 data_path = '../datos/'
 
 
-def get_stdout_data(nmin = None,data_type='M',format='stdout',dated='20200707',lugar='CHIHUAHUA'):
+def get_stdout_data(nmin = None,data_type='M',format='all',dated='20200707',lugar='CHIHUAHUA'):
     ''' Obtener datos estatales, nacionales o municipales en Mexico.
         Ejemplo:
 
@@ -77,7 +77,7 @@ def get_stdout_data(nmin = None,data_type='M',format='stdout',dated='20200707',l
     datosS.reset_index(drop=True, inplace=True)
 
     if nmin:
-        if format == 'deaths':
+        if format == 'D':
             nmin_index = get_index(nmin,datosD)
         else:
             nmin_index = get_index(nmin,datosI)
@@ -93,19 +93,18 @@ def get_stdout_data(nmin = None,data_type='M',format='stdout',dated='20200707',l
 
     if format == 'stdout':
         return np.array(datosI['Numero personas diarias'].tolist()), np.array(datosD['Numero personas totales'].tolist()), np.array(datosS['Numero personas diarias'].tolist())
-    elif format == 'all':
+    elif format == 'IS':
         datosI.reset_index(drop=True, inplace=True)
-        datosD.reset_index(drop=True, inplace=True)
         datosS.reset_index(drop=True, inplace=True)
-        return datosI, datosD, datosS
-    elif format == 'deaths':
+        return datosI, datosS
+    elif format == 'D':
         datosD.reset_index(drop=True, inplace=True)
         return datosD
     else:
         datosI.reset_index(drop=True, inplace=True)
+        datosD.reset_index(drop=True, inplace=True)
         datosS.reset_index(drop=True, inplace=True)
-        return datosI, datosS
-
+        return datosI, datosD, datosS
 
 def get_index(nmin,datos):
 
