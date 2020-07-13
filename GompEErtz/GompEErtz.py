@@ -104,23 +104,35 @@ class GompEErtz:
         else:
             return model_gom,model_pronostico,min_sol
 
-    def plot_tot_fit(self):
+    def plot_tot_fit(self,subplot=False,extra=''):
+
+        if self.data_type == 'E':
+            entidad = 'Edo.'
+        elif self.data_type == 'M':
+            entidad = 'Mpio.'
+        else:
+            entidad = ''
 
         if self.fit_deaths:
             label = 'Fallecidos'
+        elif self.factor > 0:
+            label = 'Estimados'
         else:
             label = 'Confirmados'
 
-        plt.ion()
-        plt.figure()
+        lugar = self.lugar[0].upper()+self.lugar[1:].lower()
 
-        plt.plot(self.cases,'o',label='Casos ; %s'%self.lugar)
+        if not subplot:
+            plt.ion()
+            plt.figure()
+
+        plt.plot(self.cases,'o',label='Casos %s'%label)
         plt.plot(self.mfit,'k-',label='Gompertz\n Status: %s'%self.mfit_min_sol.message)
 
         plt.legend()
         plt.xlabel('Dias desde %s '%self.dia_init)
         plt.ylabel('%s Totales'%label)
-        plt.title('%s Acumulados en %s'%(label,self.lugar) )
+        plt.title('%s%s Acumulados %s %s'%(extra,label,entidad,lugar) )
 
 
 
