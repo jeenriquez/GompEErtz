@@ -1,6 +1,6 @@
 from GompEErtz import *
 
-nmin = 300
+nmin = 20
 
 #---------------------------------------------------------------
 # Calcular los ajustes con respecto al numero de fallecidos

@@ -1,7 +1,7 @@
 from GompEErtz import *
 
 
-nmin = 2 #This follows the number of infected, not the number of death (semi-bug)
+nmin = 1
 
 #---------------------------------------------------------------
 # Calcular los ajustes con respecto al numero de fallecidos

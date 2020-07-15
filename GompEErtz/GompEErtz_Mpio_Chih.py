@@ -1,7 +1,7 @@
 from GompEErtz import *
 
 
-nmin = 1
+nmin = 2
 
 #---------------------------------------------------------------
 # Calcular los ajustes dependiendo el porcentaje de sospechosos
