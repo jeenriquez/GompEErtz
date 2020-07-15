@@ -142,7 +142,7 @@ class GompEErtz:
             plt.figure()
 
         plt.plot(self.cases,'o',label='Casos %s'%label)
-        plt.plot(self.mfit,'k-',label='Gompertz\n Status: %s'%self.mfit_min_sol.message)
+        plt.plot(self.mfit,'k-',label='Gompertz\nMetodo: %s\nResultado: %s'%(self.method,self.mfit_min_sol.message))
 
         plt.legend()
         plt.xlabel('Dias desde %s '%self.dia_init)
