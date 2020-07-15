@@ -6,7 +6,7 @@ nmin = 1
 # Calcular los ajustes con respecto al numero de fallecidos
 
 #fallecidos
-gom = GompEErtz(fit_deaths=True)
+gom = GompEErtz(fit_deaths=True,nmin=nmin)
 
 #-------
 #Plotting
@@ -25,8 +25,9 @@ text(len(gom.mfit_day), gom.cases_daily.max()*.75,gom.dias[-1], rotation=90, ver
 plt.hlines(nmin,-1*nmin,150,linestyles='dotted',colors='Gray', label='Limite %i casos'%nmin)
 plt.xlim(-2,120)
 
-plt.vlines(len(gom.dias),-5,np.nanmax(gom.mfit_pronostico_day)*1.1,colors='Gray',label=gom.dias[-1])
-plt.ylim(-.4,np.nanmax(gom.mfit_pronostico_day)*1.05)
+plt.vlines(len(gom.dias),-5,np.nanmax(gom.cases_daily)*1.1,colors='Gray',label=gom.dias[-1])
+plt.ylim(0,np.nanmax(gom.cases_daily)*1.05)
+
 
 plt.legend()
 plt.xlabel('Dias desde %s '%gom.dia_init)
@@ -38,11 +39,11 @@ plt.savefig('../results/gom_pronostico_Edo_fallecidos_%s.png'%gom.dated,dpi=300)
 # Calcular el cambio de pronostico devido a actualizacion de datos.
 
 #positivos
-gom_0606 = GompEErtz(fit_deaths=True,dated='20200606')
-gom_0614 = GompEErtz(fit_deaths=True,dated='20200614')
-gom_0621 = GompEErtz(fit_deaths=True,dated='20200621')
-gom_0626 = GompEErtz(fit_deaths=True,dated='20200626')
-gom_0707 = GompEErtz(fit_deaths=True,dated='20200707')
+gom_0606 = GompEErtz(fit_deaths=True,nmin=nmin,dated='20200606')
+gom_0614 = GompEErtz(fit_deaths=True,nmin=nmin,dated='20200614')
+gom_0621 = GompEErtz(fit_deaths=True,nmin=nmin,dated='20200621')
+gom_0626 = GompEErtz(fit_deaths=True,nmin=nmin,dated='20200626')
+gom_0707 = GompEErtz(fit_deaths=True,nmin=nmin,dated='20200707')
 
 #-------
 #Plotting
