@@ -84,10 +84,25 @@ class GompEErtz:
         c = 1
         bounds=((1e-7,0.3),(0.3,0.9999),(0.9,1.5))
 
-        min_sol = minimize(self.sumsq,(x0,x1,c),bounds=bounds,method='TNC',options={'maxiter':1000})
+        self.method = 'TNC'
+
+        min_sol = minimize(self.sumsq,(x0,x1,c),bounds=bounds,method=self.method,options={'maxiter':1000})
 
         if verbose:
             print(min_sol)
+
+
+        if 'failed' in min_sol.message:
+            if verbose:
+                print('NOTE: TNC:  %s  \n Attempting L-BFGS-B method.'%min_sol.message)
+
+            self.method = 'L-BFGS-B'
+            min_sol = minimize(self.sumsq,(x0,x1,c),bounds=bounds,method=self.method,options={'maxiter':1000})
+
+            if verbose:
+                print(min_sol)
+
+            min_sol.message = min_sol.message.decode("utf-8")[:11]
 
         #Modelo del fit
         model_gom = self.inv_gom(min_sol.x[0],min_sol.x[1],min_sol.x[2],self.t,1)
