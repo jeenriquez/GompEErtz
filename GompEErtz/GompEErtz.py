@@ -10,7 +10,7 @@ class GompEErtz:
     '''
     '''
 
-    def __init__(self,data_type='E',fit_deaths=False,factor=0,dated='20200707',lag=-7,nmin=5,lugar='CHIHUAHUA'):
+    def __init__(self,data_type='E',fit_deaths=False,factor=0,dated='20200715',lag=-7,nmin=5,lugar='CHIHUAHUA'):
 
         #-------
         #The global wild west

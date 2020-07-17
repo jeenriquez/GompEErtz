@@ -11,7 +11,7 @@ import pdb
 data_path = '../datos/'
 
 
-def get_stdout_data(nmin = None,data_type='M',format='all',dated='20200707',lugar='CHIHUAHUA'):
+def get_stdout_data(nmin = None,data_type='M',format='all',dated='20200715',lugar='CHIHUAHUA'):
     ''' Obtener datos estatales, nacionales o municipales en Mexico.
         Ejemplo:
 
