@@ -2,6 +2,7 @@ from GompEErtz import *
 
 
 nmin = 2
+savefig = True
 
 #---------------------------------------------------------------
 # Calcular los ajustes dependiendo el porcentaje de sospechosos
@@ -21,15 +22,15 @@ gom_100sos = GompEErtz(data_type='M',lugar='Chihuahua',nmin=nmin,factor=1)
 plt.ion()
 plt.figure()
 #plt.plot(gom.cases_daily,'+',color='lightcoral',label='Chihuahua Positivos')
-plt.bar(range(len(gom.cases_daily)),gom.cases_daily,color='lightcoral',label='Chihuahua Confirmados')
+plt.bar(range(len(gom.cases_daily)),gom.cases_daily,color='lightcoral',label='Confirmados')
 
-plt.plot(gom.mfit_day,'k-',label='gompertz ajuste a confirmados (G)')
-plt.plot(gom.mfit_pronostico_day,'-',color='red',label='gompertz pronostico a confirmados (GP)')
+plt.plot(gom.mfit_day,'k-',label='Gompertz Ajuste a Confirmados (G)')
+plt.plot(gom.mfit_pronostico_day,'-',color='red',label='Gompertz Pronostico a Confirmados (GP)')
 plt.plot(gom.mfit_day,'k-',label='')
 
 
-plt.plot(gom_40sos.mfit_pronostico_day,'--',color='firebrick',label='GP + 40% de sospechosos')
-plt.plot(gom_100sos.mfit_pronostico_day,'-.',color='peru',label='GP + 100% de sospechosos')
+plt.plot(gom_40sos.mfit_pronostico_day,'--',color='firebrick',label='GP + 40% de Sospechosos')
+plt.plot(gom_100sos.mfit_pronostico_day,'-.',color='peru',label='GP + 100% de Sospechosos')
 
 #plt.vlines(x=[0,len(gom.mfit_day)],ymin=-10,ymax=100, color = 'Gray')
 
@@ -47,7 +48,8 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Mpio. Chih')
-plt.savefig('../results/gom_pronostico_Mpio_%s.png'%gom.dated,dpi=300)
+if savefig:
+    plt.savefig('../results/gom_pronostico_Mpio_%s.png'%gom.dated,dpi=300)
 
 #---------------------------------------------------------------
 # Calcular el cambio de pronostico devido a actualizacion de datos.
@@ -59,6 +61,7 @@ gom_40sos_0614 = GompEErtz(data_type='M',lugar='Chihuahua',nmin=nmin,factor=0.4,
 gom_40sos_0621 = GompEErtz(data_type='M',lugar='Chihuahua',nmin=nmin,factor=0.4,dated='20200621')
 gom_40sos_0626 = GompEErtz(data_type='M',lugar='Chihuahua',nmin=nmin,factor=0.4,dated='20200626')
 gom_40sos_0707 = GompEErtz(data_type='M',lugar='Chihuahua',nmin=nmin,factor=0.4,dated='20200707')
+gom_40sos_0715 = GompEErtz(data_type='M',lugar='Chihuahua',nmin=nmin,factor=0.4,dated='20200715')
 
 #-------
 #Plotting
@@ -66,11 +69,12 @@ gom_40sos_0707 = GompEErtz(data_type='M',lugar='Chihuahua',nmin=nmin,factor=0.4,
 plt.ion()
 plt.figure()
 
-plt.plot(gom_40sos_0606.mfit_pronostico_day,'--',color='firebrick',label='GP+40 ; Junio 06')
-plt.plot(gom_40sos_0614.mfit_pronostico_day,'--',color='darkorange',label='GP+40 ; Junio 15')
-plt.plot(gom_40sos_0621.mfit_pronostico_day,'--',color='peru',label='GP+40 ; Junio 21')
-plt.plot(gom_40sos_0626.mfit_pronostico_day,'--',color='darkkhaki',label='GP+40 ; Junio 26')
-plt.plot(gom_40sos_0707.mfit_pronostico_day,'--',color='gold',label='GP+40 ; Julio 07')
+plt.plot(gom_40sos_0606.mfit_pronostico_day,'-.',color='gold',label='GP+40 ; Junio 06')
+plt.plot(gom_40sos_0614.mfit_pronostico_day,'-.',color='orange',label='GP+40 ; Junio 15')
+plt.plot(gom_40sos_0621.mfit_pronostico_day,'--',color='darkorange',label='GP+40 ; Junio 21')
+plt.plot(gom_40sos_0626.mfit_pronostico_day,'--',color='peru',label='GP+40 ; Junio 26')
+plt.plot(gom_40sos_0707.mfit_pronostico_day,'--',color='firebrick',label='GP+40 ; Julio 07')
+plt.plot(gom_40sos_0715.mfit_pronostico_day,'-.',color='red',label='GP+40 ; Julio 15')
 
 plt.vlines(len(gom.dias),-5,np.nanmax(gom_40sos.mfit_pronostico_day)*1.1,colors='Gray',label=gom.dias[-1])
 plt.ylim(-0.5,np.nanmax(gom_40sos.mfit_pronostico_day)*1.05)
@@ -81,8 +85,9 @@ plt.xlim(-2,165)
 plt.legend()
 plt.xlabel('Dias desde %s '%gom_40sos_0606.dia_init)
 plt.ylabel('Casos Diarios')
-plt.title('Casos diarios Mpio. Chih')
-plt.savefig('../results/gom_pronostico_Mpio_multi_%s.png'%gom.dated,dpi=300)
+plt.title('Casos diarios Mpio. Chihuahua')
+if savefig:
+    plt.savefig('../results/gom_pronostico_Mpio_multi_%s.png'%gom.dated,dpi=300)
 
 #---------------------------------------------------------------
 # Calcular el cambio de pronostico con respecto al limites iniciales
@@ -119,11 +124,13 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom_40sos_nmin1.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Mpio. Chihuahua')
-plt.savefig('../results/gom_pronostico_Mpio_multilim_%s.png'%gom.dated,dpi=300)
+if savefig:
+    plt.savefig('../results/gom_pronostico_Mpio_multilim_%s.png'%gom.dated,dpi=300)
 
 #-------
 #Plotting
 
 gom_40sos.plot_tot_fit()
-plt.savefig('../results/gom_pronostico_Mpio_fit_%s.png'%gom.dated,dpi=300)
+if savefig:
+    plt.savefig('../results/gom_pronostico_Mpio_fit_%s.png'%gom.dated,dpi=300)
 

@@ -1,6 +1,7 @@
 from GompEErtz import *
 
 nmin = 300
+savefig = True
 
 #---------------------------------------------------------------
 # Calcular los ajustes dependiendo el porcentaje de sospechosos
@@ -21,13 +22,13 @@ plt.ion()
 plt.figure()
 plt.bar(range(len(gom.cases_daily)),gom.cases_daily,color='lightcoral',label='Confirmados')
 
-plt.plot(gom.mfit_day,'k-',label='gompertz ajuste a confirmados (G)')
-plt.plot(gom.mfit_pronostico_day,'-',color='red',label='gompertz pronostico a confirmados (GP)')
+plt.plot(gom.mfit_day,'k-',label='Gompertz Ajuste a Confirmados (G)')
+plt.plot(gom.mfit_pronostico_day,'-',color='red',label='Gompertz Pronostico a Confirmados (GP)')
 plt.plot(gom.mfit_day,'k-',label='')
 
 
-plt.plot(gom_40sos.mfit_pronostico_day,'--',color='firebrick',label='GP + 40% de sospechosos')
-plt.plot(gom_100sos.mfit_pronostico_day,'-.',color='peru',label='GP + 100% de sospechosos')
+plt.plot(gom_40sos.mfit_pronostico_day,'--',color='firebrick',label='GP + 40% de Sospechosos')
+plt.plot(gom_100sos.mfit_pronostico_day,'-.',color='peru',label='GP + 100% de Sospechosos')
 
 text(0, gom.cases_daily.max(),gom.dias[0], rotation=90, verticalalignment='top')
 text(len(gom.mfit_day)-1, gom.cases_daily.max(),gom.dias[-1], rotation=90, verticalalignment='top')
@@ -50,7 +51,8 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Mexico')
-plt.savefig('../results/gom_pronostico_Mexico_%s.png'%gom.dated,dpi=300)
+if savefig:
+    plt.savefig('../results/gom_pronostico_Mexico_%s.png'%gom.dated,dpi=300)
 
 
 #---------------------------------------------------------------
@@ -63,6 +65,7 @@ gom_40sos_0614 = GompEErtz(data_type='N',lugar='Mexico',nmin=nmin,factor=0.4,dat
 gom_40sos_0621 = GompEErtz(data_type='N',lugar='Mexico',nmin=nmin,factor=0.4,dated='20200621')
 gom_40sos_0626 = GompEErtz(data_type='N',lugar='Mexico',nmin=nmin,factor=0.4,dated='20200626')
 gom_40sos_0707 = GompEErtz(data_type='N',lugar='Mexico',nmin=nmin,factor=0.4,dated='20200707')
+gom_40sos_0715 = GompEErtz(data_type='N',lugar='Mexico',nmin=nmin,factor=0.4,dated='20200715')
 
 #-------
 #Plotting
@@ -70,11 +73,13 @@ gom_40sos_0707 = GompEErtz(data_type='N',lugar='Mexico',nmin=nmin,factor=0.4,dat
 plt.ion()
 plt.figure()
 
-plt.plot(gom_40sos_0606.mfit_pronostico_day,'-.',color='firebrick',label='GP+40 ; Junio 06')
-plt.plot(gom_40sos_0614.mfit_pronostico_day,'--',color='darkorange',label='GP+40 ; Junio 14')
-plt.plot(gom_40sos_0621.mfit_pronostico_day,'--',color='peru',label='GP+40 ; Junio 21')
-plt.plot(gom_40sos_0626.mfit_pronostico_day,'--',color='darkkhaki',label='GP+40 ; Junio 26')
-plt.plot(gom_40sos_0707.mfit_pronostico_day,'--',color='gold',label='GP+40 ; Julio 07')
+plt.plot(gom_40sos_0606.mfit_pronostico_day,'-.',color='gold',label='GP+40 ; Junio 06')
+plt.plot(gom_40sos_0614.mfit_pronostico_day,'-.',color='orange',label='GP+40 ; Junio 14')
+plt.plot(gom_40sos_0621.mfit_pronostico_day,'--',color='darkorange',label='GP+40 ; Junio 21')
+plt.plot(gom_40sos_0626.mfit_pronostico_day,'--',color='peru',label='GP+40 ; Junio 26')
+plt.plot(gom_40sos_0707.mfit_pronostico_day,'--',color='firebrick',label='GP+40 ; Julio 07')
+plt.plot(gom_40sos_0715.mfit_pronostico_day,'-.',color='red',label='GP+40 ; Julio 15')
+
 
 # plt.hlines(nmin,-1*nmin,500,linestyles='dotted',colors='Gray', label='Limite %i casos'%nmin)
 # plt.xlim(-2,300)
@@ -90,11 +95,13 @@ plt.legend()
 plt.xlabel('Dias desde %s '%gom_40sos_0606.dia_init)
 plt.ylabel('Casos Diarios')
 plt.title('Casos diarios Mexico')
-plt.savefig('../results/gom_pronostico_Mexico_multi_%s.png'%gom.dated,dpi=300)
+if savefig:
+    plt.savefig('../results/gom_pronostico_Mexico_multi_%s.png'%gom.dated,dpi=300)
 
 #-------
 #Plotting
 
 gom_40sos.plot_tot_fit()
-plt.savefig('../results/gom_pronostico_Mexico_fit_%s.png'%gom.dated,dpi=300)
+if savefig:
+    plt.savefig('../results/gom_pronostico_Mexico_fit_%s.png'%gom.dated,dpi=300)
 
