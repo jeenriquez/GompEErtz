@@ -6,7 +6,6 @@ from scipy.optimize import *
 from scipy.ndimage.interpolation import shift
 from matplotlib.pyplot import text
 
-
 class GompEErtz:
     '''
     '''
@@ -110,9 +109,11 @@ class GompEErtz:
 
         #Modelo para pronostico
         x3 = 1.-1e-5
-        t_pronostico = int(self.t * gompertz.ppf(x3,c) / gompertz.ppf(min_sol.x[1],c))
+
+        t_pronostico = int(self.t * (gompertz.ppf(x3,c)-gompertz.ppf(min_sol.x[0],c)) / (gompertz.ppf(min_sol.x[1],c)-gompertz.ppf(min_sol.x[0],c)))#+10
+
         model_pronostico = self.inv_gom(min_sol.x[0],x3,min_sol.x[2],t_pronostico,1)
-        mfit_pronostico = model_pronostico*self.N/max(model_gom)#+nmin
+        mfit_pronostico = model_pronostico*self.N/max(model_gom)
 
         if normalized:
             return mfit,mfit_pronostico,min_sol
