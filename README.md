@@ -18,12 +18,12 @@ usage: askGompEErtz [-h] [-t DATA_TYPE] [-l LUGAR] [-n NMIN] [-s SAVEFIG]
 askGompEErtz [options]
 
 optional arguments:
-  -h, --help     show this help message and exit
-  -t DATA_TYPE   Typo de entidad (M/E/N). Defaul: E
-  -l LUGAR       Nombre del lugar. Defaul: Chihuahua
-  -n NMIN        Numero minimo de casos a analisar. Defaul: 1
-  -s SAVEFIG     Guardar figura. Default:False
-  -f FIT_DEATHS  Analisar casos de fallecidos. Default:False
+  -h, --help     Muestra esta mensage de ayuda
+  -t DATA_TYPE   Tipo de entidad (M/E/N). Defecto: E
+  -l LUGAR       Nombre del lugar. Defecto: Chihuahua
+  -n NMIN        Numero minimo de casos a analisar. Defecto: 1
+  -s SAVEFIG     Guardar figura. Defecto:False
+  -f FIT_DEATHS  Analisar casos de fallecidos. Defecto:False
   ```
   
   
