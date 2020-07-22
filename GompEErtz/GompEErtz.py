@@ -1,7 +1,11 @@
+#! /usr/bin/env python
+'''
+Clase GompEErtz, que utiliza el modelo Gompertz para analizar casos confirmados, estimados o fallecidos de municipios, y estados de Mexico, asi como a nivel nacional.
+'''
+
 from  get_data import *
 import matplotlib.pylab as plt
 from scipy.stats import gompertz
-#from scipy.optimize import minimize
 from scipy.optimize import *
 from scipy.ndimage.interpolation import shift
 from matplotlib.pyplot import text
@@ -38,6 +42,14 @@ class GompEErtz:
 
         #Formating the place name
         self.lugar_name = self.lugar[0].upper()+self.lugar[1:].lower()
+
+        #Format place name for data access.
+        if self.data_type == 'E':
+            self.lugar = self.lugar.upper()
+        elif self.data_type == 'M':
+            self.lugar = self.lugar_name
+        else:
+            self.lugar = 'Nacional'
 
         #-------
         #Get data, excluding the last few days
