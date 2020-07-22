@@ -1,9 +1,9 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 '''
 Este codigo utiliza el clase GompEErtz para analizar casos confirmados, estimados o fallecidos de municipios, y estados de Mexico, asi como a nivel nacional.
 '''
 
-from GompEErtz import *
+from .GompEErtz import *
 from argparse import ArgumentParser
 import matplotlib.pylab as plt
 
@@ -26,9 +26,7 @@ def main():
     fit_deaths = parse_args.fit_deaths
     nmin = parse_args.nmin
 
-
     Gom_analysis(nmin=nmin,savefig=savefig,lugar=lugar,data_type=data_type,fit_deaths=fit_deaths)
-
 
 def Gom_analysis(nmin=1,savefig=False,lugar='Chihuahua',data_type='M',fit_deaths=False):
 
@@ -151,9 +149,6 @@ def Gom_analysis(nmin=1,savefig=False,lugar='Chihuahua',data_type='M',fit_deaths
 
     if savefig:
         plt.savefig('../results/gom_pronostico_%s_%s_fit_%s.png'%(gom.entidad,gom.lugar_name,gom.dated),dpi=300)
-
-
-
 
 
 if __name__ == "__main__":

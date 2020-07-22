@@ -2,13 +2,13 @@
 import pandas as pd
 import numpy as np
 import pickle
-
-import pdb
+from pkg_resources import resource_filename
 
 #--------------------
 #
 
-data_path = '../datos/'
+data_path = resource_filename('GompEErtz', 'datos/')
+#data_path = '../datos/'
 
 
 def get_stdout_data(nmin = None,data_type='M',format='all',dated='20200715',lugar='CHIHUAHUA'):
