@@ -22,6 +22,23 @@ class GompEErtz:
         self.lugar = lugar
         self.fit_deaths = fit_deaths
 
+        if self.data_type == 'E':
+            self.entidad = 'Edo'
+        elif self.data_type == 'M':
+            self.entidad = 'Mpio'
+        else:
+            self.entidad = ''
+
+        if self.fit_deaths:
+            self.tipo_datos= 'Fallecidos'
+        elif self.factor > 0:
+            self.tipo_datos = 'Estimados'
+        else:
+            self.tipo_datos = 'Confirmados'
+
+        #Formating the place name
+        self.lugar_name = self.lugar[0].upper()+self.lugar[1:].lower()
+
         #-------
         #Get data, excluding the last few days
 
@@ -90,7 +107,6 @@ class GompEErtz:
         if verbose:
             print(min_sol)
 
-
         if 'failed' in min_sol.message:
             if verbose:
                 print('NOTE: TNC:  %s  \n Attempting L-BFGS-B method.'%min_sol.message)
@@ -122,33 +138,17 @@ class GompEErtz:
 
     def plot_tot_fit(self,subplot=False,extra=''):
 
-        if self.data_type == 'E':
-            entidad = 'Edo.'
-        elif self.data_type == 'M':
-            entidad = 'Mpio.'
-        else:
-            entidad = ''
-
-        if self.fit_deaths:
-            label = 'Fallecidos'
-        elif self.factor > 0:
-            label = 'Estimados'
-        else:
-            label = 'Confirmados'
-
-        lugar = self.lugar[0].upper()+self.lugar[1:].lower()
-
         if not subplot:
             plt.ion()
             plt.figure()
 
-        plt.plot(self.cases,'o',label='Casos %s'%label)
+        plt.plot(self.cases,'o',label='Casos %s'%self.tipo_datos)
         plt.plot(self.mfit,'k-',label='Gompertz\nMetodo: %s\nResultado: %s'%(self.method,self.mfit_min_sol.message))
 
         plt.legend()
         plt.xlabel('Dias desde %s '%self.dia_init)
-        plt.ylabel('%s Totales'%label)
-        plt.title('%s%s Acumulados %s %s'%(extra,label,entidad,lugar) )
+        plt.ylabel('%s Totales'%self.tipo_datos)
+        plt.title('%s%s Acumulados %s. %s'%(extra,self.tipo_datos,self.entidad,self.lugar_name) )
 
 
 
