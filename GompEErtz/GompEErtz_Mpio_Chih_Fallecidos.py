@@ -2,7 +2,7 @@ from GompEErtz import *
 
 
 nmin = 1
-savefig = True
+savefig = False
 
 #---------------------------------------------------------------
 # Calcular los ajustes con respecto al numero de fallecidos

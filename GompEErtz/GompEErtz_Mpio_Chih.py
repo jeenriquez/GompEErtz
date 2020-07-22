@@ -2,7 +2,7 @@ from GompEErtz import *
 
 
 nmin = 2
-savefig = True
+savefig = False
 
 #---------------------------------------------------------------
 # Calcular los ajustes dependiendo el porcentaje de sospechosos
