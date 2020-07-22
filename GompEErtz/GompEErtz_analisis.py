@@ -11,11 +11,11 @@ def main():
 
     parser = ArgumentParser(description='askGompEErtz [options]')
 
-    parser.add_argument('-t',action='store', dest='data_type', type=str, default='M', help='Typo de entidad (M/E/N). Defaul: E ')
-    parser.add_argument('-l',action='store', dest='lugar', type=str, default='Chihuahua', help='Nombre del lugar. Defaul: Chihuahua ')
-    parser.add_argument('-n',action='store', dest='nmin', type=int, default=1, help='Numero minimo de casos a analisar. Defaul: 1 ')
-    parser.add_argument('-s', action='store', default=False, dest='savefig', help='Guardar figura. Default:False')
-    parser.add_argument('-f', action='store', default=False, dest='fit_deaths', help='Analisar casos de fallecidos. Default:False')
+    parser.add_argument('-t',action='store', dest='data_type', type=str, default='M', help='Tipo de entidad (M/E/N). Defecto: E ')
+    parser.add_argument('-l',action='store', dest='lugar', type=str, default='Chihuahua', help='Nombre del lugar. Defecto: Chihuahua ')
+    parser.add_argument('-n',action='store', dest='nmin', type=int, default=1, help='Numero minimo de casos a analisar. Defecto: 1 ')
+    parser.add_argument('-s', action='store', default=False, dest='savefig', help='Guardar figura. Defecto:False')
+    parser.add_argument('-f', action='store', default=False, dest='fit_deaths', help='Analisar casos de fallecidos. Defecto:False')
 
     parse_args = parser.parse_args()
 
