@@ -18,15 +18,15 @@ gom_100sos = GompEErtz(factor=1)
 #Plotting
 
 plt.ion()
-plt.figure()
+plt.figure(figsize=(10,9))
 
-plt.subplot(2, 3, 1)
+plt.subplot(3, 2, 1)
 gom_40sos.plot_tot_fit(subplot=True,extra='A) ')
 
 #-------
 #Plotting
 
-plt.subplot(2, 3, 2)
+plt.subplot(3, 2, 3)
 
 #plt.plot(gom.cases_daily,'+',color='lightcoral',label='Chihuahua Positivos')
 plt.bar(range(len(gom.cases_daily)),gom.cases_daily,color='lightcoral',label='Confirmados')
@@ -72,7 +72,7 @@ gom_40sos_0715 = GompEErtz(factor=0.4,dated='20200715')
 #-------
 #Plotting
 
-plt.subplot(2, 3, 3)
+plt.subplot(3, 2, 5)
 
 plt.plot(gom_40sos_0606.mfit_pronostico_day,'-.',color='gold',label='GP+40 ; Junio 06')
 plt.plot(gom_40sos_0614.mfit_pronostico_day,'-.',color='orange',label='GP+40 ; Junio 14')
@@ -110,13 +110,13 @@ gom = GompEErtz(fit_deaths=True,nmin=nmin)
 #-------
 #Plotting
 
-plt.subplot(2, 3, 4)
+plt.subplot(3, 2, 2)
 gom.plot_tot_fit(subplot=True,extra='D) ')
 
 #-------
 #Plotting
 
-plt.subplot(2, 3, 5)
+plt.subplot(3, 2, 4)
 
 plt.bar(range(len(gom.cases_daily)),gom.cases_daily,color='lightblue',label='Fallecidos')
 
@@ -153,7 +153,7 @@ gom_0715 = GompEErtz(fit_deaths=True,nmin=nmin,dated='20200715')
 #-------
 #Plotting
 
-plt.subplot(2, 3, 6)
+plt.subplot(3, 2, 6)
 
 plt.plot(gom_0606.mfit_pronostico_day,'-.',color='DeepSkyBlue',label='GP; Junio 06')
 plt.plot(gom_0614.mfit_pronostico_day,'--',color='dodgerblue',label='GP; Junio 14')
