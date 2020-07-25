@@ -3,7 +3,11 @@
 Clase GompEErtz, que utiliza el modelo Gompertz para analizar casos confirmados, estimados o fallecidos de municipios, y estados de Mexico, asi como a nivel nacional.
 '''
 
-from  .get_data import *
+try:
+    from  .get_data import *
+except:
+    from  get_data import *
+
 import matplotlib.pylab as plt
 from scipy.stats import gompertz
 from scipy.optimize import *
